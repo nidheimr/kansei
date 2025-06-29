@@ -29,7 +29,10 @@ if [[ -n $(git status --porcelain) ]]; then
     read -p "Enter commit message for kansei: " KANSEI_COMMIT_MSG
     LATEST_LUX_HASH=$(git -C external/lux rev-parse --short HEAD)
     KANSEI_COMMIT_MSG=${KANSEI_COMMIT_MSG:-"Updated"}
-    KANSEI_COMMIT_MSG="$KANSEI_COMMIT_MSG (lux@$LATEST_LUX_HASH)"
+
+    if ! git diff --quiet --exit-code --cached -- external/lux; then
+        KANSEI_COMMIT_MSG="$KANSEI_COMMIT_MSG (lux updated to $LATEST_LUX_HASH)"
+    fi 
 
     git add .
     git commit -m "$KANSEI_COMMIT_MSG"
