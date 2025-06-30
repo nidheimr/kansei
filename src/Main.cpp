@@ -7,10 +7,9 @@ int main()
     while (app->IsAlive())
     {
         app->Update();
-
-        lx_print("fps: %d, delta: %lf", app->GetFps(), app->GetDeltaTime());
-
         app->Render();
+
+        lx_debug("fps: %d, delta: %lf", app->GetFps(), app->GetDeltaTime());
     }
 
     delete app;
