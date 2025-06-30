@@ -10,16 +10,22 @@ namespace core
         lx_print_error_on_occurance(debug);
 
         m_window = lx_window_create(title, width, height);
+        m_shader = lx_shader_create("default.vert", "default.frag");
     }
     
     Application::~Application()
     {
+        lx_shader_destroy(m_shader);
         lx_window_destroy(m_window);
     }
 
     void Application::Update()
     {
         lx_window_update(m_window);
+        lx_shader_use(m_shader);
+
+        if (lx_key_is_down(LX_KEY_A))
+            lx_shader_test(m_shader);
     }
     
     void Application::Render()

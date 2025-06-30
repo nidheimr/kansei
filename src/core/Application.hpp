@@ -8,6 +8,7 @@ namespace core
     {
     private:
         lx_window* m_window;
+        lx_shader m_shader;
 
     public:
         Application(const char* title, int width, int height, bool debug);
