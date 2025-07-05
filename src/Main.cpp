@@ -7,6 +7,9 @@ int main()
     while (app->IsAlive())
     {
         app->Update(); 
+
+        lx_print("FPS: %d, DELTA: %d", app->GetFps(), app->GetDeltaTime());
+
         app->Render();
     }
 
