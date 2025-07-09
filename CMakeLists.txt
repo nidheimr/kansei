@@ -3,7 +3,7 @@
 #
 
 cmake_minimum_required(VERSION 3.20)
-project(kansei CXX)
+project(kansei C)
 
 set(common_bin_dir ${CMAKE_SOURCE_DIR}/bin/$<0:>)
 
@@ -17,11 +17,11 @@ add_subdirectory(external/lux)
 #   executable
 #
 
-file(GLOB_RECURSE source_files CONFIGURE_DEPENDS src/*.cpp)
+file(GLOB_RECURSE source_files CONFIGURE_DEPENDS src/*.c)
 add_executable(kansei ${source_files})
 
 set_target_properties(kansei PROPERTIES
-    CXX_STANDARD 17
+    C_STANDARD 17
     RUNTIME_OUTPUT_DIRECTORY ${common_bin_dir}
 )
 
